@@ -12,7 +12,7 @@
             <img src="pokemon.svg" alt="Logo" width="200" height="100" />
 
             <ul class="flex gap-8 text-base-content font-medium">
-                <li class="cursor-pointer hover:text-primary hover:scale-105 transition-transform duration-200">
+                <li id="homeBtn" class="cursor-pointer hover:text-primary hover:scale-105 transition-transform duration-200">
                     Home
                 </li>
                 <li class="cursor-pointer hover:text-primary hover:scale-105 transition-transform duration-200">
@@ -24,7 +24,7 @@
                 <li class="cursor-pointer hover:text-primary hover:scale-105 transition-transform duration-200">
                     Characters
                 </li>
-                <li class="cursor-pointer hover:text-primary hover:scale-105 transition-transform duration-200">
+                <li id="favoritesBtn" class="cursor-pointer hover:text-primary hover:scale-105 transition-transform duration-200">
                     Favoris
                 </li>
             </ul>
@@ -58,7 +58,7 @@
             </div>
         </header>
 
-        <main class="container mx-auto">
+        <main id="mainPage" class="container mx-auto">
             <div class="max-w-7xl mx-auto">
                 <h1 class="text-4xl font-bold text-primary mb-8 text-center">Découvrez le monde des Pokémon</h1>
 
@@ -151,6 +151,13 @@
             </dialog>
             <button class="btn btn-primary mx-auto block my-8">Voir plus</button>
         </main>
+
+        <div id="favoritesPage" class="hidden container mx-auto py-8">
+            <h1 class="text-4xl font-bold text-primary mb-8 text-center">Mes Favoris</h1>
+            <div id="favoritesContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <p class="col-span-3 text-center opacity-60">Aucun favori pour l'instant.</p>
+            </div>
+        </div>
 
         <script type="module" src="/src/main.ts"></script>
     </body>

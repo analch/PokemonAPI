@@ -78,7 +78,7 @@ async function getPokemonDetails(name: string) {
 }
 
 //Répétition de carte pokémon
-function createPokemonCard(pokemon: any): HTMLElement {
+function createPokemonCard(pokemon: data.result): HTMLElement {
     const gradient = typeGradientMap[pokemon.primaryType] || 'from-emerald-400 to-teal-500'; // Dégradé basé sur le type principal
 
     const typesHTML = pokemon.types
@@ -169,6 +169,12 @@ async function searchPokemon(searchText: string) {
     if (details) {
         container.appendChild(createPokemonCard(details));
     }
+
+    if (details) {
+        container.appendChild(createPokemonCard(details));
+    } else {
+        container.innerHTML = `<p class="col-span-3 text-center text-xl opacity-60 mt-12"> Aucun Pokémon trouvé</p>`;
+    }
 }
 
 //Recherche barre de recherche
@@ -177,5 +183,24 @@ document.getElementById('searchBtn')?.addEventListener('click', () => searchPoke
 searchInput?.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') searchPokemon(searchInput.value);
 });
+
+//direction home page
+document.getElementById('homeBtn')?.addEventListener('click', () => {
+    document.getElementById('favoritesPage')!.classList.add('hidden');
+    document.getElementById('mainPage')!.classList.remove('hidden');
+});
+
+//direction page favoris
+document.getElementById('favoritesBtn')?.addEventListener('click', () => {
+    document.getElementById('mainPage')!.classList.add('hidden');
+    document.getElementById('favoritesPage')!.classList.remove('hidden');
+});
+
+document.getElementById('backBtn')?.addEventListener('click', () => {
+    document.getElementById('favoritesPage')!.classList.add('hidden');
+    document.getElementById('mainPage')!.classList.remove('hidden');
+});
+
+
 
 displayAllPokemon();
