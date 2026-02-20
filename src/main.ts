@@ -63,6 +63,7 @@ const typeGradientMap: { [key: string]: string } = {
     fairy: 'from-pink-300 to-pink-500',
 };
 
+// Récupération des détails d'un pokémon
 async function getPokemonDetails(name: string) {
     const response = await fetch(`${API_URL}/pokemon/${name.toLowerCase()}`);
     if (!response.ok) return null;
@@ -76,8 +77,9 @@ async function getPokemonDetails(name: string) {
     };
 }
 
+//Répétition de carte pokémon
 function createPokemonCard(pokemon: any): HTMLElement {
-    const gradient = typeGradientMap[pokemon.primaryType] || 'from-emerald-400 to-teal-500';
+    const gradient = typeGradientMap[pokemon.primaryType] || 'from-emerald-400 to-teal-500'; // Dégradé basé sur le type principal
 
     const typesHTML = pokemon.types
         .map((type: string) => {
@@ -108,7 +110,7 @@ function createPokemonCard(pokemon: any): HTMLElement {
         showPopup(pokemon);
     });
 
-    // Clic sur le coeur → ne pas ouvrir la popup
+    // Clic sur le coeur
     const heartBtn = card.querySelector('.heart-btn')!;
     heartBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -117,6 +119,7 @@ function createPokemonCard(pokemon: any): HTMLElement {
     return card;
 }
 
+// Affichage du popup lors du clic sur une carte
 function showPopup(pokemon: any) {
     const popup = document.getElementById('pokemonDetail');
     const popupName = document.getElementById('popup-name')!;
@@ -132,6 +135,7 @@ function showPopup(pokemon: any) {
     popup?.showModal();
 }
 
+// Affichage de tous les pokémons
 async function displayAllPokemon() {
     const container = document.getElementById('pokemonContainer')!;
     container.innerHTML = 'Chargement...';
@@ -149,6 +153,7 @@ async function displayAllPokemon() {
     }
 }
 
+//Action de recherche
 async function searchPokemon(searchText: string) {
     const container = document.getElementById('pokemonContainer')!;
 
@@ -166,6 +171,7 @@ async function searchPokemon(searchText: string) {
     }
 }
 
+//Recherche barre de recherche
 const searchInput = document.getElementById('searchInput') as HTMLInputElement;
 document.getElementById('searchBtn')?.addEventListener('click', () => searchPokemon(searchInput.value));
 searchInput?.addEventListener('keypress', (e) => {
